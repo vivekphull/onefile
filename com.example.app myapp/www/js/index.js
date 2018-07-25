@@ -31,16 +31,36 @@ var app = {
     },
 
     // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+    <script type="text/javascript">
+    var video = document.getElementById('video');
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.oGetUserMedia || navigator.msGetUserMedia;
 
-        console.log('Received Event: ' + id);
+    if(navigator.getUserMedia){
+        navigator.getUserMedia({video:true}, streamWebCam, throwError);
     }
+
+    function streamWebCam (stream) {
+        video.src = window.URL.createObjectURL(stream);
+        video.play();
+    }
+
+    function throwError (e) {
+        alert(e.name);
+    }
+
+    function snap () {
+        canvas.width = video.clientWidth;
+        canvas.height = video.clientHeight;
+        context.drawImage(video, 0, 0);
+    }
+</script>
+
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+</body>
 };
 
 app.initialize();
