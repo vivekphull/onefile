@@ -31,7 +31,7 @@ var app = {
     },
 
     // Update DOM on a Received Event
-    <script type="text/javascript">
+   
     var video = document.getElementById('video');
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
@@ -56,11 +56,9 @@ var app = {
         canvas.height = video.clientHeight;
         context.drawImage(video, 0, 0);
     }
-</script>
 
-<script type="text/javascript" src="cordova.js"></script>
-<script type="text/javascript" src="js/index.js"></script>
-</body>
+
+
 };
 
 app.initialize();
